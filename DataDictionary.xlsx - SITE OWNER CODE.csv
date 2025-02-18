@@ -1,0 +1,13 @@
+Reference list values for: ,,
+,,
+Site Owner Code,,
+,,
+Code,Name,Description
+,,
+IN,Individual,"Owner is an individual, or a group of individuals who are not a legal corporation."
+WS,Water Supplier,"Owner is a private or public entity that withdraws and/or distributes water to 25 or more residents or a minimum of 15 service connections. The National Water Use code for the site(s) should be ""WS"" to indicate public supply."
+CP,Corporation,Owner is a legal entity composed of one or more individuals acting as a single person. A local or national company owning an industrial or commercial facility is an example. Nonprofit natural lands trust and land conservancies should be coded as corporations. Corporations which are water suppliers should be coded as a water supplier.
+GV,Government,"Owner is a local, State, or federal agency. Government agencies providing water supply (such as a municipal water authority) should be coded as a Water Supplier. Government agencies providing wastewater treatment (a municipal sewer authority) or other services than water supply should be coded as Government. Federal- or state-recognized Indian tribal governments, including corporations wholly owned by tribal governments, should be coded as Indian tribal government."
+MI,Military,Owner is a branch of the U.S. military.
+TG,Tribal Govt,"Owner is a Federal- or state-recognized Indian tribal government, a subdivision of such, or a corporation wholly owned by a tribal government."
+OT,Other,"The type of owner is known and is something other than a water supplier, a corporation, individual, government, Indian tribal government, or military. For example, private-public partnerships should be coded as Other. The use of Other should be avoided if possible."

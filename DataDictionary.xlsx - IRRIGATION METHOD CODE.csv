@@ -1,0 +1,10 @@
+Reference list values for: ,,
+,,
+Irrigation Method Code,,
+,,
+Code,Name,Description
+,,
+SP,Spray,"A sprinkler irrigation system sprays water through the air; the water then falls on the plant and soil surface much like natural rainfall.  Spray systems include solid set, hand-move, side-roll, center pivot, and big gun systems."
+FL,Flood,A surface irrigation system that applies water at a point or edge of a field and allows gravity flow to pond or flood strips of land in a systematic manner.
+MC,Micro,Low-volume or micro-irrigation systems apply water directly to the ground surrounding individual plants through minature sprinklers or micro-jets.  Sub-surface systems that control the height of the water table are included in this category.
+UN,Unspecified,The irrigation method has not been specified or is unknown.

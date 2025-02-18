@@ -1,0 +1,26 @@
+Reference list values for: ,,
+,,
+Primary Use Of Water,,
+,,
+Code,Name,Description
+,,
+A,Air conditioning,Water supply used solely or principally for heating or cooling a building.
+B,Bottling,Water used for storage in bottles for potable purposes.
+C,Commercial,Water used by a business establishment that does not fabricate or produce a product.
+D,Dewatering,"Water pumped for dewatering a construction or mine site, or to lower the water table for agriculture."
+E,Power generation,Water used for generation of any type of power.
+F,Fire protection,"Water used principally for fire protection, however there may be other uses."
+H,Domestic,"Water for household needs, such as drinking, cooking, washing, lawn irrigation, and sanitary purposes."
+I,Irrigation,"Water used to irrigate cultivated plants, including larger grassed areas."
+J,Cooling,Water supply used for industrial cooling.
+K,Mining,Water supply used solely for mining purposes.
+M,Medicinal,"Water purported to have therapeutic value, may be used for bathing and/or drinking."
+N,Industrial,Water is used within a plant that manufactures or fabricates a product.
+P,Public supply,Water that is pumped and distributed to several homes.
+Q,Aquaculture,"Water supply used solely for aquaculture, such as fish farms."
+R,Recreation,"Water discharged into pools for swimming, boating, fishing, ice rinks, and other recreational uses."
+S,Stock supply,Water used for the watering of livestock.
+T,Institutional,"Water used by large schools, universities, hospitals, rest homes, or similar installations."
+U,Unused,Water is not being removed from the site.
+Y,Desalination,Water used in a desalting process where dissolved solids are removed to make the water usable.
+Z,Other,Miscellaneous uses of the water not included in other categories.

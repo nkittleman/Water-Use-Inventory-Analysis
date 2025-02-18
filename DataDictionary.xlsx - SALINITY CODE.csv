@@ -1,0 +1,10 @@
+Reference list values for: ,,
+,,
+Salinity Code,,
+,,
+Code,Name,Description
+,,
+F,Fresh,"Water with less than 1,000 milligrams per liter of dissolved solids."
+S,Saline,"Water with 1,000 milligrams per liter or more of dissolved solids, irrespective of the nature of the minerals present."
+U,Unknown,"Water for which it is not known whether the number of milligrams of dissolved solids is greater than or less than 1,000."
+N,Unspecified,The salinity code was not specified.

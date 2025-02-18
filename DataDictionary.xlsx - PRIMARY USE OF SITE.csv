@@ -1,0 +1,24 @@
+Reference list values for: ,,
+,,
+Primary Use of Site,,
+,,
+Code,Name,Description
+,,
+A,Anode,Hole used as an electrical anode.
+C,Standby,Standby emergency supply used only when the principal supplier of water is unavailable.
+D,Drain,For the drainage of surface water underground.
+E,Geothermal,Well drilled for geothermal energy development.
+G,Seismic,Hole drilled for seismic exploration.
+H,Heat reservoir,Well in which a fluid is circulated in a closed system.
+M,Mine,"Any tunnel, shaft, or other excavation constructed for the extraction of minerals."
+N,Unknown,"Unknown, Not enough information available to determine use of site."
+O,Observation,Cased test hole or well drilled either for water-level or for water-quality observations.
+P,Oil or gas,"Well or hole drilled in search of, or for production of, petroleum or gas."
+R,Recharge,"Site constructed for, or converted for, use in replenishing the aquifer."
+S,Repressurize,Pumping of water into an aquifer to increase the pressure in the aquifer for a specific purpose.
+T,Test,"Hole that was drilled for water, or for geologic or hydrogeologic testing."
+U,Unused,An abandoned water-supply site or one for which no use is contemplated.
+V,Wthdrwl/Rtrn,Groundwater sites that are used both to withdraw and inject water to a well.
+W,Withdrawal,Site that supplies water for one of the purposes shown under use of water.
+X,Waste-disposal,Site that is used to convey waste fluid into an underground zone.
+Z,Destroyed,Site that is no longer in existence.

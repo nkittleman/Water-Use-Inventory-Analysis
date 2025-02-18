@@ -1,0 +1,18 @@
+Reference list values for: ,,
+,,
+National Water Use Code,,
+,,
+Code,Name,Description
+,,
+WS,Water Supply,"Public supply refers to the water delivered to several users for domestic, commercial, industrial, and thermoelectric power uses when the water is withdrawn by public and private water suppliers."
+DO,Domestic,"Domestic water is that which is used for everyday household purposes, such as drinking, food preparation, bathing, washing clothes and dishes, flushing toilets, and watering lawns and gardens."
+CO,Commercial,"Commercial water is that which is used by motels, hotels, restaurants, office buildings, other commercial facilities, and civilian and military institutions."
+IN,Industrial,"Industrial water is used in facilities that manufacture products for purposes of processing, washing, and cooling."
+MI,Mining,"Mining water is used in the preparations that are a part of mining activities such as the extraction of naturally occurring materials, dewatering, and milling."
+LV,Livestock,"Livestock water use is water used for livestock watering, feed lots, dairy operations, and other on-farm needs. Livestock includes all animals other than fish."
+AQ,Aquaculture,Aquaculture water use is water used for fish hatcheries and fish farms.
+IR,Irrigation,Irrigation water use includes water used to irrigate public and private golf courses and all water artificially applied to farm and horticultural crops.
+TE,Thermoelectric,"Thermoelectric power water use is water used in the process of generating thermoelectric power using fossil fuel, nuclear, or geothermal fuel sources."
+PH,Hydroelectric,Hydroelectric power generation refers to the water used in the generation of electricity at plants where the turbine generators are driven by falling water.
+ST,Wastewater Treatment,"Wastewater treatment refers to the amount of water treated and released by facilities engaged primarily in the collection, treatment, and disposal of wastewater conveyed through a sewer system."
+RM,Remediation,"Remediation water use is water that is either (1) pumped from a contaminated area to control the flow direction of contaminants in ground-water or (2) pumped, treated, and either used or returned to ground-water or surface-water."

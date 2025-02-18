@@ -1,0 +1,21 @@
+Reference list values for: ,,
+,,
+Measurement Method Code,,
+,,
+Code,Name,Description
+,,
+CPTY,Capacity,Value represents stated plant or pump capacity.
+COAR,Coefficient Application Rate,Calculated using coefficient for an application rate.
+COCP,Coefficient Per Capita,Calculated using a coefficient for per capita (livestock or humans).
+COPW,Coefficient Power Consumption,Calculated using a coefficient for power consumption.
+ESTM,Estimated,Value did not originate from a direct measurement with a meter or calculation using coefficients. It was computed using assumed pumping rate and estimated or measured time.
+FMCU,Flowmeter Cumulative,A cumulative flowmeter was used to compute the value.
+FMIN,Flowmeter Instantaneous,An instantaneous flowmeter was used to compute the value.
+GAGE,Gaged,The value was obtained from a streamflow gage or weir.
+MTUN,Metered Type Unknown,A meter was used to obtain the value but the type is unknown.
+PERM,Permit,The value is the permitted number.
+TTES,Time-Totalizer,A time-totalizer that provides an estimate of discharge was used.
+TTIF,Time-Totalizer Flowmeter,A time-totalizer with an instantaneous flowmeter was used.
+UNKN,Unknown,The measuring method is not known.
+UNSP,Unspecified,A meter or coefficients were not used to obtain the value. The method used has not been specified.
+MODL,Modeled,Estimated using a multi-variable model.
