@@ -1,0 +1,373 @@
+>>>malloy
+source: AgencyCode is duckdb.table('./DataDictionary.xlsx - AGENCY CODE.csv') extend{
+    rename: agencycodename is column1
+    rename: from_agency_cd is `Reference list values for:`
+    primary_key: from_agency_cd
+}
+>>>malloy
+source: PrimaryUse is duckdb.table('./DataDictionary.xlsx - PRIMARY USE OF SITE.csv') extend{
+    rename: primaryusename is column1
+    rename: from_site_use_1_cd is `Reference list values for:`
+    primary_key: from_site_use_1_cd
+}
+>>>malloy
+source: NationalCode is duckdb.table('./DataDictionary.xlsx - NATIONAL WATER USE CODE.csv') extend{
+    rename: NationalUseCode is column1
+    rename: from_nat_water_use_cd is `Reference list values for:`
+    primary_key: from_nat_water_use_cd
+}
+>>>malloy
+source: TopoCode is duckdb.table('./DataDictionary.xlsx - TOPOGRAPHIC CODE.csv') extend{
+    rename: TopographicCode is column1
+    rename: from_topo_cd is `Reference list values for:`
+    primary_key: from_topo_cd
+}
+>>>malloy
+source: Owner is duckdb.table('./DataDictionary.xlsx - SITE OWNER CODE.csv') extend{
+    rename: OwnerCode is column1
+    rename: from_site_owner_cd is `Reference list values for:`
+    primary_key: from_site_owner_cd
+}
+>>>malloy
+source: Site is duckdb.table('./DataDictionary.xlsx - SITE TYPE CODE.csv') extend{
+    rename: SiteCode is column1
+    rename: from_site_tp_cd is `Reference list values for:`
+    primary_key: from_site_tp_cd
+}
+>>>malloy
+source: WaterUse is duckdb.table('./DataDictionary.xlsx - PRIMARY USE OF WATER.csv') extend{
+    rename: WaterUseCode is column1
+    rename: from_water_use_1_cd is `Reference list values for:`
+    primary_key: from_water_use_1_cd
+}
+>>>malloy
+source: Main is duckdb.table('./records-combined.csv') extend{
+    dimension: ConveyanceDate is strptime!date(cn_cr, '%d-%b-%y %-I.%M.%S.%n %p')
+    dimension: ConveyaneDateModified is strptime!date(cn_md, '%d-%b-%y %-I.%M.%S.%n %p')
+    dimension: ConveyanceQuantityDate is strptime!date(cn_cr, '%d-%b-%y %-I.%M.%S.%n %p')
+    dimension: QuantityYearString is cn_qnty_yr::string
+    dimension: QuantityYear is strptime!date(QuantityYearString, '%Y')
+    dimension: QuantityRecord is strptime!date(cn_qnty_yr_cr, '%m/%d/%y %I:%M')
+    dimension: QuantityYearModified is strptime!date(cn_qnty_yr_md, '%d-%b-%y %-I.%M.%S.%n %p')
+    dimension: accs_cd is from_accs_cd::string
+    dimension: from_county_code is from_county_cd::string
+    dimension: from_district_code is from_district_cd::string
+    dimension: from_huc_code is from_huc_cd::string
+    dimension: sic_code is from_sic_cd::string
+    dimension: fromsitecr is strptime!date(from_site_cr, '%d-%b-%y %-I.%M.%S.%n %p')
+    dimension: fromsitemd is strptime!date(from_site_md, '%d-%b-%y %-I.%M.%S.%n %p')
+    dimension: tositeno is to_site_no::string
+    join_one: AgencyCode with from_agency_cd
+    join_one: PrimaryUse with from_site_use_1_cd
+    join_one: NationalCode with from_nat_water_use_cd
+    join_one: TopoCode with from_topo_cd
+    join_one: Owner with from_site_owner_cd
+    join_one: Site with from_site_tp_cd
+    join_one: WaterUse with from_water_use_1_cd
+    
+}
+>>>markdown
+What are the most common agency codes? Which one holds the most water?
+>>>malloy
+run: Main -> {
+    group_by: from_agency_cd, AgencyCode.agencycodename
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>markdown
+What are all the NAICS codes represented in the data? Which one uses the most water?
+>>>malloy
+run: Main -> {
+    group_by: from_naics_cd, from_naics_ds
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>markdown
+What are all the different types of water represented in this data? How much water is included in each type?
+>>>malloy
+run: Main -> {
+    group_by: water_cd, water_nm
+    aggregate: WaterAmount is sum(cn_qnty_yr_va)
+}
+>>>markdown
+How many water sites are in each state?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: WaterSites is count(from_site_no)
+}
+>>>markdown
+How many national aquifers are there? Which states have the most national aquifers?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: Aquifers is count(from_nat_aqfr_cd)
+}
+>>>markdown
+Show a map depicting all the national aquifer sites in the United States.
+>>>malloy
+# shape_map
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: Aquifers is count(from_nat_aqfr_cd)
+}
+>>>markdown
+Which states use the most water?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>markdown
+Which states have the least accurate data?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    where: from_reliability_cd = "L"
+}
+>>>markdown
+Which states have the most accurate data?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    where: accuracy_cd = "E" AND from_reliability_cd = "C"
+}
+>>>markdown
+What are the most common primary uses for water sites?
+>>>malloy
+run: Main -> {
+    group_by: PrimaryUse.primaryusename
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>markdown
+What is the average site well depth in each state?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: AvgDepth is avg(from_well_depth_va)
+}
+>>>markdown
+Identify all the national water use category types. How many water sites fall under each code?
+>>>malloy
+run: Main -> {
+    group_by: NationalCode.NationalUseCode
+    aggregate: WaterSites is count()
+}
+>>>markdown
+What are the most common methods used for water transportation?
+>>>malloy
+run: Main -> {
+    group_by: cn_nm
+    aggregate: WaterTransported is sum(cn_qnty_yr_va)
+}
+>>>markdown
+How has the nation's water consumption changed over time?
+>>>malloy
+run: Main -> {
+    group_by: QuantityYear.year
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>markdown
+Make a graph depicting America's water consumption over time.
+>>>malloy
+# line_chart
+run: Main -> {
+    group_by: QuantityYear.year
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>markdown
+Which states use the least amount of water?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+    order_by: WaterUse asc
+}
+>>>markdown
+How does water consumption change throughout the year?
+>>>malloy
+run: Main -> {
+    group_by: ConveyanceDate.year
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+    nest: ByMonth is {
+        group_by: ConveyanceDate.month 
+        aggregate: WaterUse is sum(cn_qnty_yr_va)
+        order_by: WaterUse desc
+    }
+}
+>>>markdown
+How many data collection sites have been discontinued or are inactive?
+>>>malloy
+run: Main -> {
+    group_by: from_agency_use_cd
+    aggregate: WaterSites is count()
+    where: from_agency_use_cd = "D" | "I"
+}
+>>>markdown
+What are the most common topographic codes for water sites?
+>>>malloy
+run: Main -> {
+    group_by: TopoCode.TopographicCode
+    aggregate: WaterSites is count()
+}
+>>>markdown
+What types of entities own the majority of water sites?
+>>>malloy
+run: Main -> {
+    group_by: Owner.OwnerCode
+    aggregate: WaterSites is count()
+}
+>>>markdown
+What are the most common water site types?
+>>>malloy
+run: Main -> {
+    group_by: Site.SiteCode
+    aggregate: WaterSites is count()
+}
+>>>markdown
+What are the most common methods used for measuring water?
+>>>malloy
+run: Main -> {
+    group_by: meas_meth_nm
+    aggregate: WaterSites is count()
+}
+>>>markdown
+Which state depends on hydroelectricity the most?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: HydroelectricUse is sum(cn_qnty_yr_va)
+    where: NationalCode.NationalUseCode = "Hydroelectric"
+}
+>>>markdown
+Which state treats the most amount of wastewater?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: WasteWater is sum(cn_qnty_yr_va)
+    where: NationalCode.NationalUseCode = "Wastewater Treatment"
+}
+>>>markdown
+Which state uses the most amount of water for domestic purposes?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: DomesticUse is sum(cn_qnty_yr_va)
+    where: NationalCode.NationalUseCode = "Domestic"
+}
+>>>markdown
+Which state uses the most amount of water for industrial purposes?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: IndustrialUse is sum(cn_qnty_yr_va)
+    where: NationalCode.NationalUseCode = "Industrial"
+}
+>>>markdown
+Which state uses the most amount of water for commercial purposes?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: CommercialUse is sum(cn_qnty_yr_va)
+    where: NationalCode.NationalUseCode = "Commercial"
+}
+>>>markdown
+Which state uses the most water for irrigation?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: IrrigationUse is sum(cn_qnty_yr_va)
+    where: NationalCode.NationalUseCode = "Irrigation"
+}
+>>>markdown
+Which state uses the most water for livestock?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: LivestockUse is sum(cn_qnty_yr_va)
+    where: NationalCode.NationalUseCode = "Livestock"
+}
+>>>markdown
+Which state depends on water for thermoelectic power the most?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: ThermoUse is sum(cn_qnty_yr_va)
+    where: NationalCode.NationalUseCode = "Thermoelectric"
+}
+>>>markdown
+Which state uses the most water for mining?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: MiningUse is sum(cn_qnty_yr_va)
+    where: NationalCode.NationalUseCode = "Mining"
+}
+>>>markdown
+What are the most popular primary uses of water?
+>>>malloy
+run: Main -> {
+    group_by: WaterUse.WaterUseCode
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>markdown
+Which state uses the most water for air conditioning?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: CoolingUse is sum(cn_qnty_yr_va)
+    where: WaterUse.WaterUseCode = "Cooling"
+}
+>>>markdown
+Which state uses the most amount of water for power generation?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: PowerUse is sum(cn_qnty_yr_va)
+    where: WaterUse.WaterUseCode = "Power generation"
+}
+>>>markdown
+Which state uses the most water for public supplies?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: PublicUse is sum(cn_qnty_yr_va)
+    where: WaterUse.WaterUseCode = "Public supply"
+}
+>>>markdown
+Which state uses the most water for recreational purposes?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: RecreationalUse is sum(cn_qnty_yr_va)
+    where: WaterUse.WaterUseCode = "Recreation"
+}
+>>>markdown
+Which states use the most amount of water for golf course irrigation?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: GolfUse is sum(cn_qnty_yr_va)
+    where: from_naics_cd = "713910"
+}
+>>>markdown
+Which states use the most amount of water for institutions?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: InstitutionalUse is sum(cn_qnty_yr_va)
+    where: WaterUse.WaterUseCode = "Institutional"
+}
+>>>markdown
+Which states use the most amount of water for fire protection?
+>>>malloy
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: FireUse is sum(cn_qnty_yr_va)
+    where: WaterUse.WaterUseCode = "Fire protection"
+}
+>>>markdown
+How much water of our water storage is fresh? How much is saline?
+>>>malloy
+run: Main -> {
+    group_by: salinity_nm
+    aggregate: WaterAmount is sum(cn_qnty_yr_va)
+}
