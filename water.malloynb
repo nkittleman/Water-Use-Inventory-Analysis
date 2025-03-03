@@ -67,6 +67,76 @@ source: Main is duckdb.table('./records-combined.csv') extend{
     
 }
 >>>markdown
+Which NAICS classifications use the most water?
+>>>malloy
+run: Main -> {
+    group_by: from_naics_cd, from_naics_ds
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>malloy
+# bar_chart
+run: Main -> {
+    group_by: from_naics_cd, from_naics_ds
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+    limit: 5
+}
+>>>markdown
+What types of entities own the majority of water sites?
+>>>malloy
+run: Main -> {
+    group_by: Owner.OwnerCode
+    aggregate: WaterSites is count()
+}
+>>>malloy
+# bar_chart
+run: Main -> {
+    group_by: Owner.OwnerCode
+    aggregate: WaterSites is count()
+}
+>>>markdown
+Identify all the national water use category types. How many water sites fall under each code?
+>>>malloy
+run: Main -> {
+    group_by: NationalCode.NationalUseCode
+    aggregate: WaterSites is count()
+    limit: 5
+}
+>>>malloy
+# bar_chart
+run: Main -> {
+    group_by: NationalCode.NationalUseCode
+    aggregate: WaterSites is count()
+    limit: 5
+}
+>>>markdown
+How has America's water consumption changed over time?
+>>>malloy
+run: Main -> {
+    group_by: QuantityYear.year
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>malloy
+# line_chart
+run: Main -> {
+    group_by: QuantityYear.year
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>markdown
+What are the most common water site types?
+>>>malloy
+run: Main -> {
+    group_by: Site.SiteCode
+    aggregate: WaterSites is count()
+    limit: 5
+}
+>>>malloy
+# bar_chart
+run: Main -> {
+    group_by: Site.SiteCode
+    aggregate: WaterSites is count()
+    limit: 5
+}
+>>>markdown
 What are the most common agency codes? Which one holds the most water?
 >>>malloy
 run: Main -> {
@@ -74,15 +144,14 @@ run: Main -> {
     aggregate: WaterUse is sum(cn_qnty_yr_va)
 }
 >>>markdown
-What are all the NAICS codes represented in the data? Which one uses the most water?
->>>malloy
-run: Main -> {
-    group_by: from_naics_cd, from_naics_ds
-    aggregate: WaterUse is sum(cn_qnty_yr_va)
-}
->>>markdown
 What are all the different types of water represented in this data? How much water is included in each type?
 >>>malloy
+run: Main -> {
+    group_by: water_cd, water_nm
+    aggregate: WaterAmount is sum(cn_qnty_yr_va)
+}
+>>>malloy
+# bar_chart
 run: Main -> {
     group_by: water_cd, water_nm
     aggregate: WaterAmount is sum(cn_qnty_yr_va)
@@ -116,6 +185,12 @@ run: Main -> {
     group_by: foia_sheet
     aggregate: WaterUse is sum(cn_qnty_yr_va)
 }
+>>>malloy
+# shape_map
+run: Main -> {
+    group_by: foia_sheet
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
 >>>markdown
 Which states have the least accurate data?
 >>>malloy
@@ -145,33 +220,11 @@ run: Main -> {
     aggregate: AvgDepth is avg(from_well_depth_va)
 }
 >>>markdown
-Identify all the national water use category types. How many water sites fall under each code?
->>>malloy
-run: Main -> {
-    group_by: NationalCode.NationalUseCode
-    aggregate: WaterSites is count()
-}
->>>markdown
 What are the most common methods used for water transportation?
 >>>malloy
 run: Main -> {
     group_by: cn_nm
     aggregate: WaterTransported is sum(cn_qnty_yr_va)
-}
->>>markdown
-How has the nation's water consumption changed over time?
->>>malloy
-run: Main -> {
-    group_by: QuantityYear.year
-    aggregate: WaterUse is sum(cn_qnty_yr_va)
-}
->>>markdown
-Make a graph depicting America's water consumption over time.
->>>malloy
-# line_chart
-run: Main -> {
-    group_by: QuantityYear.year
-    aggregate: WaterUse is sum(cn_qnty_yr_va)
 }
 >>>markdown
 Which states use the least amount of water?
@@ -206,20 +259,6 @@ What are the most common topographic codes for water sites?
 >>>malloy
 run: Main -> {
     group_by: TopoCode.TopographicCode
-    aggregate: WaterSites is count()
-}
->>>markdown
-What types of entities own the majority of water sites?
->>>malloy
-run: Main -> {
-    group_by: Owner.OwnerCode
-    aggregate: WaterSites is count()
-}
->>>markdown
-What are the most common water site types?
->>>malloy
-run: Main -> {
-    group_by: Site.SiteCode
     aggregate: WaterSites is count()
 }
 >>>markdown
@@ -307,6 +346,13 @@ What are the most popular primary uses of water?
 run: Main -> {
     group_by: WaterUse.WaterUseCode
     aggregate: WaterUse is sum(cn_qnty_yr_va)
+}
+>>>malloy
+# bar_chart
+run: Main -> {
+    group_by: WaterUse.WaterUseCode
+    aggregate: WaterUse is sum(cn_qnty_yr_va)
+    limit: 5
 }
 >>>markdown
 Which state uses the most water for air conditioning?
