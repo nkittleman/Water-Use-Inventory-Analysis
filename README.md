@@ -1,4 +1,4 @@
-# Data Liberation Project: Water-Use-Inventory-Analysis
+# Data Liberation Project: Water Use Inventory Analysis
 ## Description:
 This project analyzes site-level data from the U.S. Geological Survey's (USGS) water use inventory records. Data includes annual volumes and water types conveyed between sites through 2021. This data was obtained through a Freedom of Information Act (FOIA) request. Data files contain water records for all 50 states with the exception of New Jersey, combining for a total of 823,552 entries. Each entry represents a measured or estimated volume of water transferred between two sites in a given year. Data is severely limited due to FOIA reporting exemptions, and many records are missing or duplicated. However, this data is the first publicly available release of national site-level water conveyance information. More information about this data may be found on the Data Liberation Project website found here: https://www.data-liberation-project.org/
 ## Importance:
