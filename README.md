@@ -50,12 +50,12 @@ The ultimate conclusion I've reached after performing this analysis is that the 
 To perform your own analysis on the water-use data provided, you must download all files linked in this repository and place them into a folder on your computer. The main dataset, "records-combined", is too large to run in GitHub and must be downloaded and unzipped. Download and install Malloy in Visual Studio Code and open the folder containing all the downloaded files. Then, click on the file titled, "water.malloynb", and you are good to go!
 ## Key Analytical Visualizations:
 Water Use by NAICS Classification:
-![Water Use by NAICS Classification](NAICS.png)
+![Water Use by NAICS Classification](NAICS.png) 
 Number of Water Sites by Owner Type:
-![Owner Classifications of Water Sites](Owner.png)
+![Owner Classifications of Water Sites](Owner.png) 
 Number of Water Sites by National Water Use Category Type:
-![Water Use by National Water Use Category Type](SiteType.png)
+![Water Use by National Water Use Category Type](SiteType.png) 
 Water Use Over Time:
-![Water Use Over Time](Time.png)
+![Water Use Over Time](Time.png) 
 Number of Water Sites by Water Site Type:
-![Water Use by Water Site Type](Type.png)
+![Water Use by Water Site Type](Type.png) 
