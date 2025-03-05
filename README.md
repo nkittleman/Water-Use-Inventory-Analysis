@@ -7,45 +7,44 @@ This dataset helps to inform politicians, water agencies, and researchers unders
 The raw data files included in this dataset contained an immense amount of missing or null values. These values were not cleaned for the purpose of showcasing how incomplete and inaccurate this dataset is. Dictionary and metadata tables were joined together with the main dataset ("records-combined") to allow for a more complete analysis with regards to agency codes, irrigation methods, measurement methods, national water use codes, primary water-use classifications, primary site-use classifications, salinity codes, site owner codes, site types, and topographic codes. Primary keys shared between the data dictionaries and the main dataset were used to join each dataset together. Columns within metadata tables were renamed to reflect the same titles within the main dataset. Important dates were changed using Duckdb functions to allow for query usability in addition to changes in the data types of key columns. 
 ## Findings:
 The ultimate conclusion I've reached after performing this analysis is that the data is severely unreliable and incomplete. Results are not comprehensive, as certain states reported far more effectively than others. With that being said, the results of my analysis are listed below:
-- Illinois uses the most water out of all states
-- Electric power generation uses more water than all other NAICS code classifications
-- The vast majority of water sites are classified as surface water
-- Arkansas has the most water sites
-- Oklahoma has the most aquifers
-- Alabama, Illinois, Louisiana, Minnesota, Missouri, Nevada, Pennsylvania, and South Dakota have the least accurate data
-- Idaho, Kansas, Maine, Montana, Oregon, Wisconsin, and Wyoming have the most accurate data
-- Water withdrawal is the most common water site use
-- Louisiana has the deepest water site well-depths
-- Most water sites are used for water supply
-- Most water is transported through pipes
-- America consumed more water in 2010 than any year in recent history
-- Water levels spiked in the 2010s and are gradually declining
-- Alaska uses the least amount of water out of all states
-- Water consumption levels are usually the highest in June
-- Over 75,000 water sites have been discontinued or are inactive
-- Most water sites are located on a flat surface
-- Water suppliers own the majority of water sites
-- Most water sites are classified as wells
-- Water measurement methods are extremely inconsistent between sites
-- Arkansas relies on hydroelectricity more than any other state
-- Rhode Island treats more waste water than any other state
-- Washington uses the most amount of water for domestic purposes
-- Pennsylvania uses the most amount of water for industrial purposes
-- Rhode Island uses the most amount of water for commercial purposes
-- Arkansas uses the most amount of water for irrigational purposes
-- Oklahoma uses the most amount of water for livestock purposes
-- Illinois depends on thermoelectricity more than any other state
-- Pennsylvania uses the most amount of water for mining purposes
-- Public supply is the most common type of water use
-- Georgia uses the most amount of water for cooling purposes
-- Pennsylvania uses the most amount of water for power generation purposes
-- Illinois uses the most amount of water for public supply purposes
-- Pennsylvania uses the most amount of water for industrial purposes
-- Oklahoma uses the most amount of water for recreational purposes
-- Pennsylvania uses the most amount of water for golf course irrigation
-- Missouri uses the most amount of water for institutional purposes
-- Louisiana uses the most amount of water for fire protection purposes
-- The salinity types of most water sites is unspecified, but is likely fresh water
+- Illinois uses the most water out of all states (Query 17)
+- Electric power generation uses more water than all other NAICS code classifications (Query 1)
+- The vast majority of water sites are classified as surface water (Query 12)
+- Arkansas has the most water sites (Query 14)
+- Oklahoma has the most aquifers (Query 15)
+- Alabama, Illinois, Louisiana, Minnesota, Missouri, Nevada, Pennsylvania, and South Dakota have the least accurate data (Query 19)
+- Idaho, Kansas, Maine, Montana, Oregon, Wisconsin, and Wyoming have the most accurate data (Query 20)
+- Water withdrawal is the most common water site use (Query 21)
+- Louisiana has the deepest water site well-depths (Query 22)
+- Most water sites are used for water supply (Query 5)
+- Most water is transported through pipes (Query 23)
+- America consumed more water in 2010 than any year in recent history (Query 7)
+- Water levels spiked in the 2010s and are gradually declining (Query 8)
+- Alaska uses the least amount of water out of all states (Query 24)
+- Water consumption levels are usually the highest in June (Query 25)
+- Over 75,000 water sites have been discontinued or are inactive (Query 26)
+- Most water sites are located on a flat surface (Query 27)
+- Water suppliers own the majority of water sites (Query 3)
+- Most water sites are classified as wells (Query 9)
+- Water measurement methods are extremely inconsistent between sites (Query 28)
+- Arkansas relies on hydroelectricity more than any other state (Query 29)
+- Rhode Island treats more waste water than any other state (Query 30)
+- Washington uses the most amount of water for domestic purposes (Query 31)
+- Pennsylvania uses the most amount of water for industrial purposes (Query 32)
+- Rhode Island uses the most amount of water for commercial purposes (Query 33)
+- Arkansas uses the most amount of water for irrigational purposes (Query 34)
+- Oklahoma uses the most amount of water for livestock purposes (Query 35)
+- Illinois depends on thermoelectricity more than any other state (Query 36)
+- Pennsylvania uses the most amount of water for mining purposes (Query 37)
+- Public supply is the most common type of water use (Query 38)
+- Georgia uses the most amount of water for cooling purposes (Query 39)
+- Pennsylvania uses the most amount of water for power generation purposes (Query 40)
+- Illinois uses the most amount of water for public supply purposes (Query 41)
+- Oklahoma uses the most amount of water for recreational purposes (Query 42)
+- Pennsylvania uses the most amount of water for golf course irrigation (Query 43)
+- Missouri uses the most amount of water for institutional purposes (Query 44)
+- Louisiana uses the most amount of water for fire protection purposes (Query 45)
+- The salinity types of most water sites is unspecified, but is likely fresh water (Query 46)
 ## How to Use:
 To perform your own analysis on the water-use data provided, you must download all files linked in this repository and place them into a folder on your computer. The main dataset, "records-combined", is too large to run in GitHub and must be downloaded and unzipped. Download and install Malloy in Visual Studio Code and open the folder containing all the downloaded files. Then, click on the file titled, "water.malloynb", and you are good to go!
 ## Key Analytical Visualizations:
